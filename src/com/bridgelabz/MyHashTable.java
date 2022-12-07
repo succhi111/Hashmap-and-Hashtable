@@ -31,6 +31,7 @@ public class MyHashTable <K,V> {
             myNode.setValue(value);
 
     }
+
     private void append(MyMapNode<K, V> myNode) {
         if (this.head == null)
             this.head = myNode;
@@ -40,6 +41,24 @@ public class MyHashTable <K,V> {
             this.tail.setNext(myNode);
             this.tail = myNode;
         }
+    }
+
+    public void remove(K word) {
+        MyMapNode currentNode = head;
+        MyMapNode previousNode = null;
+        while (currentNode != null && currentNode.getKey().equals(word)) {
+            head = currentNode.getNext();
+            return;
+        }
+        while (currentNode != null && !(currentNode.getKey().equals(word))) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+        if (currentNode != null) {
+            previousNode.next = currentNode.next;
+        }
+        if (currentNode == null)
+            System.out.println("Word not found!");
     }
 
     @Override
